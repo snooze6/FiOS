@@ -1,0 +1,11 @@
+<div ng-switch="device.type" class="full">
+    <div ng-switch-when="iOS_32|iOS_64" ng-switch-when-separator="|" class="full">
+        <div ng-include="'src/views/device/ios/app/files.html'" class="full"></div>
+    </div>
+    <div ng-switch-when="android_32|android_64" ng-switch-when-separator="|" class="full">
+        <div ng-include="'src/views/device/android/app/files.html'" class="full"></div>
+    </div>
+    <div ng-switch-default class="full">
+        <div ng-include="'src/views/404.html'" class="full"></div>
+    </div>
+</div>

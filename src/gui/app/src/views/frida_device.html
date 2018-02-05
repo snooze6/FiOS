@@ -1,0 +1,61 @@
+ <div class="window-content">
+    <div class="pane-group">
+        <div class="pane pane-sm sidebar">
+            <ul class="list-group">
+                <a ng-show="device!=null"
+                    class="list-group-item"
+                    style="cursor: default"
+                    ng-class="{hoverable: selected!=='device'}"
+                    href="#!/frida/{{device.id}}/general">
+                    <center>
+                        <img
+                                class="media-object img-circle"
+                                style="width: 48px; height: 48px"
+                                src="img/device.png">
+                    </center>
+                    <div class="media-body" style="max-width: 220px">
+                        <strong>{{device.name}}</strong>
+                        <p style="overflow: hidden; text-overflow: ellipsis">{{device.id}}</p>
+                    </div>
+                </a>
+
+                <li ng-show="device==null" class="pointer list-group-item">
+                    <center>
+                        <img
+                                class="media-object img-circle"
+                                style="width: 48px; height: 48px"
+                                src="img/device.png">
+                    </center>
+                    <div class="media-body" style="max-width: 220px">
+                        <strong>No device</strong>
+                        <p>No id</p>
+                    </div>
+                </li>
+
+                <li class="list-group-header">
+                    <input ng-model="query" class="form-control" type="text" placeholder="Search">
+                </li>
+
+                <a
+                        ng-show="apps!=null"
+                        ng-repeat="item in apps | filter: query"
+                        style="cursor: default"
+                        class="list-group-item"
+                        href="#!/frida/{{device.id}}/{{item.identifier}}"
+                        >
+                    <!--ng-class="[{selected: application.id===item.identifier}, {hoverable: application.id!==item.identifier}]"-->
+                    <icon
+                            class="media-object pull-left"
+                            data="item.largeIcon">
+                    </icon>
+                    <div class="media-body">
+                        <strong>{{item.name}}</strong>
+                        <p style="max-width: 156px; overflow: hidden; text-overflow: ellipsis">{{item.identifier}}</p>
+                    </div>
+                </a>
+            </ul>
+        </div>
+
+        <ui-view class="pane"></ui-view>
+    </div>
+</div>

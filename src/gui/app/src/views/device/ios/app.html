@@ -1,0 +1,46 @@
+<div class="tab-group">
+    <div
+            class="tab-item"
+            ng-class="{active: section=='general'}"
+            ng-click="switch('general')">
+        <span class="icon icon-tools"></span>
+        General
+    </div>
+    <div
+            class="tab-item"
+            ng-class="{active: section=='files'}"
+            ng-click="switch('files')">
+        <span class="icon icon-folder"></span>
+        Files
+    </div>
+    <div
+            class="tab-item"
+            ng-class="{active: section=='agents'}"
+            ng-click="switch('agents')">
+        <span class="icon icon-book-open"></span>
+        Agents
+    </div>
+    <div
+            class="tab-item"
+            ng-class="{active: section=='classes'}"
+            ng-click="switch('classes')">
+        <span class="icon icon-list"></span>
+        Classes
+    </div>
+    <div
+            class="tab-item"
+            ng-class="{active: section=='memdump'}"
+            ng-click="switch('memdump')">
+        <span class="icon icon-bucket"></span>
+        Memdump
+    </div>
+    <div
+            class="tab-item"
+            ng-class="{active: section=='uidump'}"
+            ng-click="switch('uidump')">
+        <span class="icon icon-eye"></span>
+        Uidump
+    </div>
+</div>
+
+<ui-view></ui-view>

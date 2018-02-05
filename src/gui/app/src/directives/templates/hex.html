@@ -1,0 +1,49 @@
+<style>
+    #tabla *{margin:0;padding:0;vertical-align:top;font:1em/1em courier}
+    #hexdata{
+        height:1.5em;resize:none;overflow:hidden;
+        width: 100%
+    }
+    #tabla, #tabla td, #tabla th {border: solid black 1px}
+    #tabla td {
+        padding: 1%;
+    }
+    #tabla #header {
+        padding:0 2px 0 2px;
+        max-width: 340px;
+        margin: auto;
+    }
+    #tabla #hexdir{
+        max-width: 60px;
+        word-break: break-all;
+        white-space: normal;
+        margin: auto;
+    }
+    #tabla #hexraw{
+        max-width: 135px;
+        word-break: break-all;
+        white-space: normal;
+        margin: auto;
+    }
+    #tabla #hexdata{
+        max-width: 340px;
+        word-break: break-all;
+        white-space: normal;
+        margin: auto;
+    }
+</style>
+
+<div style="width: 600px; padding-top: 20px">
+    <table id="tabla">
+        <tr>
+            <td><p></p></td>
+            <td><p id=header></p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p id=hexdir>00000000</p></td>
+            <td><p id=hexdata>FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF </p></td>
+            <td><p id="hexraw">................</p></td>
+        </tr>
+    </table>
+</div>

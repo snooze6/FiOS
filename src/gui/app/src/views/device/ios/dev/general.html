@@ -1,0 +1,90 @@
+<br>
+<br>
+<center>
+    <img
+            style="width: 30%"
+            ng-src="img/device-ipad.png"
+            ng-show="info.info.systemName.toLowerCase().indexOf('ipad')>-1">
+    </img>
+    <img
+            style="width: 30%"
+            ng-src="img/device-iphone.png"
+            ng-show="info.info.systemName.toLowerCase().indexOf('iphone')>-1">
+    </img>
+    <img
+            style="width: 30%"
+            ng-src="img/device-ipod.png"
+            ng-show="info.info.systemName.toLowerCase().indexOf('ipod')>-1">
+    </img>
+</center>
+<br>
+<center>
+    <table class="table table-bordered table-striped" style="margin-top: 15px; width: 98%">
+        <tr>
+            <th>ID</th>
+            <td colspan="5">{{device.id}}</td>
+        </tr>
+        <tr>
+            <th>UUID</th>
+            <td colspan="5">{{info.info.identifierForVendor}}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td colspan="5">{{info.info.deviceName}}</td>
+        </tr>
+        <tr>
+            <th>Model</th>
+            <td colspan="5">{{info.info.model}}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td colspan="5">{{device.type}}</td>
+        </tr>
+        <tr>
+            <th>iOS version</th>
+            <td colspan="5">{{info.info.systemVersion}}</td>
+        </tr>
+        <tr>
+            <th>System</th>
+            <td colspan="5">{{info.info.systemName}}</td>
+        </tr>
+        <tr>
+            <th>Running app</th>
+            <td colspan="5">{{info.info.applicationName}}</td>
+        </tr>
+        <tr>
+            <th>Frida version</th>
+            <td>{{info.frida.frida_version}}</td>
+            <th>Arch</th>
+            <td>{{info.frida.process_arch}}</td>
+            <th>Platform</th>
+            <td>{{info.frida.process_platform}}</td>
+        </tr>
+        <tr>
+            <th>Debugger</th>
+            <td>
+                <button
+                        class="btn"
+                        ng-class="{'btn-positive': info.frida.process_has_debugger, 'btn-negative': !info.frida.process_has_debugger}">
+                    {{info.frida.process_has_debugger | bool}}
+                </button>
+            </td>
+            <th>Spawnable</th>
+            <td>
+                <button
+                        class="btn"
+                        ng-class="{'btn-positive': device.spawnable, 'btn-negative': !device.spawnable}">
+                    {{device.spawnable | bool}}
+                </button>
+            </td>
+            <th>Server</th>
+            <td>
+                <button
+                        class="btn"
+                        ng-class="{'btn-positive': device.server, 'btn-negative': !device.server}">
+                    {{device.server | bool}}
+                </button>
+            </td>
+        </tr>
+    </table>
+</center>

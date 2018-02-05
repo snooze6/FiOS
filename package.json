@@ -1,0 +1,19 @@
+{
+  "name": "runner",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "make clean",
+    "clean-agents": "make clean-agents",
+    "compile": "make frida-compile",
+    "compile-watch": "make frida-compile-watch",
+    "gui": "make run-gui",
+    "test": "make run-test",
+    "update-dependencies": "make update-dependencies",
+    "install-dependencies": "make install-dependencies",
+    "update": "make update",
+
+    "dist": "make dist"
+  },
+  "dependencies": {
+  }
+}

@@ -1,0 +1,81 @@
+<div
+        style="margin: 0; padding-top: 3px; padding-bottom: 3px"
+        class="toolbar toolbar-actions">
+        <div class="btn-group pull-left" ng-show="agent.show">
+            <a
+                    class="btn btn-default"
+                    ng-click="clear()">
+                <span class="icon icon-brush icon-text"></span>
+                Clear
+            </a>
+        </div>
+        <div class="btn-group pull-right">
+            <a
+                    class="btn btn-default"
+                    ng-click="open()">
+                <span class="icon icon-folder icon-text"></span>
+                Examine
+            </a>
+            <a
+                    class="btn btn-default"
+                    ng-click="new()">
+                <span class="icon icon-plus-squared icon-text"></span>
+                New
+            </a>
+        </div>
+</div>
+
+<div data-split-pane data-split-pane-properties="splitPaneProperties" class="full">
+    <div data-split-pane-component data-height="70%">
+        <md-card ng-repeat="agent in agents">
+            <div style="padding: 5px">
+                <div class="row" style="width: 100%">
+                    <div class="col-xs-6 col-md-6">
+                        <p>{{agent.name}}</p>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <div class="btn-group pull-right">
+                            <a
+                                class="btn btn-default btn-negative"
+                                ng-click="delete(agent.name)">
+                                <span class="icon icon-trash icon-text"></span>
+                                Delete
+                            </a>
+                            <a
+                                class="btn btn-default"
+                                ng-click="agent.show = !agent.show">
+                                <span class="icon icon-eye icon-text"></span>
+                                Show source
+                            </a>
+                            <a
+                                    class="btn btn-default"
+                                    ng-click="edit(agent.name)">
+                                <span class="icon icon-pencil icon-text"></span>
+                                Edit
+                            </a>
+                            <a
+                                    class="btn btn-default"
+                                    ng-click="stop(agent.name)">
+                                <span class="icon icon-stop icon-text"></span>
+                                Stop
+                            </a>
+                            <a
+                                    class="btn btn-default"
+                                    ng-click="run(agent.name)">
+                                <span class="icon icon-play icon-text"></span>
+                                Run
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%" ng-show="agent.show">
+                    <div style="width: 100%; padding-left: 2%" hljs source="agent.src"></div>
+                </div>
+            </div>
+        </md-card>
+    </div>
+    <div data-split-pane-divider data-height="5"></div>
+    <div data-split-pane-component data-height="30%">
+        <pre>{{output}}</pre>
+    </div>
+</div>

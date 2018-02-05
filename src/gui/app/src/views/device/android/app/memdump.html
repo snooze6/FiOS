@@ -1,0 +1,46 @@
+<div class="toolbar-actions">
+
+    <div class="row">
+        <div class="col-xs-3 col-md-3" style="padding-right: 4px">
+            <a class="btn btn-default" ng-click="save()">
+                <span class="icon icon-floppy icon-text"></span>
+                Save
+            </a>
+            <a class="btn btn-default" ng-click="save_zip()">
+                <span class="icon icon-archive icon-text"></span>
+                Save as zip
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-6" style="padding: 0">
+            <center>
+                <input  style="height: 24px;" class="form-control" type="text" ng-model="query">
+            </center>
+        </div>
+        <div class="col-xs-3 col-md-3" style="padding-left: 4px">
+            <a style="float: right" class="btn btn-default" ng-click="refresh()">
+                <span class="icon icon-cw icon-text"></span>
+                Refresh
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <table class="table-striped" context-menu="menuOptions">
+        <thead>
+        <tr>
+            <th>Base dir</th>
+            <th>Size</th>
+            <th>File Size</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="range in ranges">
+            <td>{{range.baseAddress | hex}}</td>
+            <td>{{range.size}}</td>
+            <td>{{range.protection}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

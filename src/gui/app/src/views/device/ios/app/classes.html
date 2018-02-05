@@ -1,0 +1,134 @@
+<div
+        style="margin: 0; padding-top: 3px; padding-bottom: 3px"
+        class="toolbar toolbar-actions">
+    <div class="row">
+        <center>
+        <div class="btn-group col-xs-4 col-md-4" style="padding-right: 4px">
+            <a
+                    ng-class="{active: selected==='modules'}"
+                    class="btn btn-default"
+                    ng-click="get('modules')">
+                <span class="icon icon-layout"></span>
+                Modules
+            </a>
+            <a
+                    ng-class="{active: selected==='classes'}"
+                    class="btn btn-default"
+                    ng-click="get('classes')">
+                <span class="icon icon-list"></span>
+                Classes
+            </a>
+        </div>
+        </center>
+        <div class="col-xs-7 col-md-7" style="padding: 0">
+            <center>
+                <input
+                        style="height: 24px;"
+                        class="form-control"
+                        type="text"
+                        ng-model="query.query"
+                        placeholder="{{query.placeholder}}"
+                        ng-keyup="$event.keyCode == 13 && search(query.query)">
+            </center>
+        </div>
+    </div>
+</div>
+
+<div data-split-pane data-split-pane-properties="splitPaneProperties" class="full">
+    <div data-split-pane-component data-height="70%">
+        <div style="padding-bottom: 40px">
+            <table class="table-striped" ng-if="selected == 'classes'">
+                <thead>
+                <tr>
+                    <th style="text-transform: capitalize">{{selected}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="dat in data | filter:query.regex" ng-dblclick="open(dat)">
+                    <td>{{dat}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <table class="table-striped" ng-if="selected == 'modules'">
+                <thead>
+                <tr>
+                    <th style="text-transform: capitalize">Name</th>
+                    <th style="text-transform: capitalize">Base</th>
+                    <th style="text-transform: capitalize">Size</th>
+                    <th style="text-transform: capitalize">Path</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="dat in data | filter:query.regex" ng-dblclick="open(dat.name)">
+                    <td>{{dat.name}}</td>
+                    <td>{{dat.base}}</td>
+                    <td>{{dat.size}}</td>
+                    <td>{{dat.path}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>.split-pane-divider-inner{cursor: ns-resize;}</style>
+    <div data-split-pane-divider
+         data-height="5">
+    </div>
+    <div data-split-pane-component data-height="30%">
+        <center ng-if="loading">
+            <img src="img/loading.gif">
+            <p>Loading...</p>
+        </center>
+        <div ng-if="!loading">
+            <div ng-if="selected=='modules'">
+                <center>
+                    <div class="btn-group">
+                        <a
+                                ng-class="{active: more_selected=='imports'}"
+                                class="btn btn-default"
+                                ng-click="load_more(getted, 'imports')">
+                            <span class="icon icon-flow-branch icon-text"></span>
+                            Imports
+                        </a>
+                        <a
+                                ng-class="{active: more_selected=='exports'}"
+                                class="btn btn-default"
+                                ng-click="load_more(getted,'exports')">
+                            <span class="icon icon-flow-cascade icon-text"></span>
+                            Exports
+                        </a>
+                    </div>
+                </center>
+            </div>
+            <div ng-if="more" style="padding-bottom: 40px">
+                <table class="table-striped" ng-if="selected == 'classes'">
+                    <thead>
+                    <tr>
+                        <th style="text-transform: capitalize">Methods</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dat in more | filter: query.more_regex">
+                        <td ng-dblclick="open(dat)">{{dat}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table-striped" ng-if="selected == 'modules'">
+                    <thead>
+                    <tr>
+                        <th style="text-transform: capitalize">Type</th>
+                        <th style="text-transform: capitalize">Name</th>
+                        <th style="text-transform: capitalize">Address</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dat in more | filter: query.more_regex">
+                        <td>{{dat.type}}</td>
+                        <td>{{dat.name}}</td>
+                        <td>{{dat.address}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

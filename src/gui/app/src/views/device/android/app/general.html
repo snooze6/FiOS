@@ -1,0 +1,94 @@
+<div class="row">
+    <div class="col-xs-6 col-md-6">
+        <center>
+            <table class="table table-bordered table-striped" style="margin-top: 15px; width: 98%">
+                <tr>
+                    <td>Identifier</td>
+                    <td colspan="5">{{app.identifier}}</td>
+                    <td>Version</td>
+                    <td>{{app.version}}</td>
+                </tr>
+                <tr>
+                    <td>Encrypted</td>
+                    <td>
+                        <button
+                                class="btn"
+                                ng-class="{'btn-positive': app.protections.encrypted, 'btn-negative': !app.protections.encrypted}">
+                            {{app.protections.encrypted | bool}}
+                        </button>
+                    </td>
+                    <td>PIE</td>
+                    <td>
+                        <button
+                                class="btn"
+                                ng-class="{'btn-positive': app.protections.pie, 'btn-negative': !app.protections.pie}">
+                            {{app.protections.pie | bool}}
+                        </button>
+                    </td>
+                    <td>ARC</td>
+                    <td>
+                        <button
+                                class="btn"
+                                ng-class="{'btn-positive': app.protections.arc, 'btn-negative': !app.protections.arc}">
+                            {{app.protections.arc | bool}}
+                        </button>
+                    </td>
+                    <td>Canary</td>
+                    <td>
+                        <button
+                                class="btn"
+                                ng-class="{'btn-positive': app.protections.canary, 'btn-negative': !app.protections.canary}">
+                            {{app.protections.canary | bool}}
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Executable</td>
+                    <td colspan="7">{{app.paths.bin}}</td>
+                </tr>
+                <tr>
+                    <td>Bundle dir</td>
+                    <td colspan="7">{{app.paths.bundle}}</td>
+                </tr>
+                <tr>
+                    <td>Data dir</td>
+                    <td colspan="7">{{app.paths.data}}</td>
+                </tr>
+            </table>
+        </center>
+
+        <hr>
+
+        <center>
+            <table class="table table-bordered table-striped" style="margin-top: 15px; width: 98%">
+                <tr><td>URL Scheme</td></tr>
+                <tr ng-repeat="item in app.schemas"><td>{{item}}</td></tr>
+            </table>
+        </center>
+
+        <hr>
+
+        <center>
+            <table class="table table-bordered table-striped" style="margin-top: 15px; width: 98%">
+                <tr><td colspan="2">App entilements</td></tr>
+                <tr><td>keychain-access-groups</td><td>{{app.keychain.groups}}</td></tr>
+                <tr><td>com.apple.developer.team-identifier</td><td>{{app.keychain.team}}</td></tr>
+                <tr><td>application-identifier</td><td>{{app.keychain.app}}</td></tr>
+                <tr><td>get-task-allow</td><td>{{app.keychain.task}}</td></tr>
+            </table>
+        </center>
+
+
+
+    </div>
+    <div class="col-xs-6 col-md-6">
+        <div class="list-group-header">
+            <input class="form-control" type="text" ng-model="query" placeholder="Search for someone">
+        </div>
+        <json-tree
+                object="info"
+                start-expanded="true"
+                root-name="'Info.plist'">
+        </json-tree>
+    </div>
+</div>

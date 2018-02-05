@@ -1,0 +1,23 @@
+<div class="pane">
+    <div class="tab-group">
+        <div
+                class="tab-item"
+                ng-class="{active: section=='general'}"
+                ng-click="switch('general')">
+            <span class="icon icon-tools"></span>
+            General
+        </div>
+        <div
+                class="tab-item"
+                ng-class="{active: section=='files'}"
+                ng-click="switch('files')">
+            <span class="icon icon-folder"></span>
+            Files
+        </div>
+    </div>
+
+    <div ng-switch="section">
+        <ui-view></ui-view>
+    </div>
+</div>
+

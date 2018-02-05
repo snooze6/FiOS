@@ -1,0 +1,114 @@
+<div
+        style="margin: 0; padding-top: 3px; padding-bottom: 3px"
+        class="toolbar toolbar-actions">
+    <div class="row">
+        <div class="col-xs-2 col-md-2" style="padding-right: 0">
+            <div class="btn-group">
+                <a class="btn btn-default" ng-click="go_bin()">
+                    <span class="icon icon-home icon-text"></span>
+                    Bin
+                </a>
+                <a class="btn btn-default" ng-click="go_data()">
+                    <span class="icon icon-home icon-text"></span>
+                    Data
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-8 col-md-8">
+            <div class="row">
+                <div class="col-xs-1 col-md-1" style="padding-right: 4px">
+                    <a class="btn btn-default pull-right" ng-click="up()">
+                        <span class="icon icon-up"></span>
+                    </a>
+                </div>
+                <div class="col-xs-10 col-md-10" style="padding: 0">
+                    <center>
+                        <input style="height: 24px;" class="form-control" type="text" ng-model="path">
+                    </center>
+                </div>
+                <div class="col-xs-1 col-md-1" style="padding-left: 4px">
+                    <a
+                            ng-class="{disabled: loading}"
+                            class="btn btn-default pull-left"
+                            ng-click="refresh()">
+                            <span
+                                    ng-class="{spin: loading}"
+                                    class="icon icon-cw"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-md-2" style="padding-left: 0">
+            <div  style="float: right" class="btn-group">
+                <div class="btn-group">
+                    <a class="btn btn-default" ng-click="mkdir()">
+                        <span class="icon icon-folder icon-text"></span>
+                        New
+                    </a>
+                    <a class="btn btn-default" ng-click="download()">
+                        <span class="icon icon-down-bold"></span>
+                    </a>
+                    <a class="btn btn-default" ng-click="upload()">
+                        <span class="icon icon-up-bold"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ----------------------------------------------- -->
+
+<div data-split-pane data-split-pane-properties="splitPaneProperties" class="full">
+    <div data-split-pane-component data-height="70%">
+        <table class="table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <!--<th>Kind</th>-->
+                <th>Last modified</th>
+                <th>Permissions</th>
+                <th>File Size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                    ng-repeat="file in files"
+                    context-menu="menuOptions"
+                    ng-dblclick="double(file)">
+                <td>
+                    <div ng-switch="file | type" >
+                        <div ng-switch-when="folder">
+                            <span class="icon icon-folder"></span>
+                        </div>
+                        <div ng-switch-default>
+                            <span class="icon icon-doc"></span>
+                        </div>
+                    </div>
+                </td>
+                <td>{{file.fileName}}</td>
+                <!--<td>{{file | type}}</td>-->
+                <td>{{file.attributes.NSFileModificationDate}}</td>
+                <td>{{file.attributes.NSFilePosixPermissions}}</td>
+                <td>{{file.attributes.NSFileSize}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <center ng-if="loading">
+            <img src="img/loading.gif">
+            <p>Loading...</p>
+        </center>
+    </div>
+    <style>.split-pane-divider-inner{cursor: ns-resize;}</style>
+    <div data-split-pane-divider
+         data-height="5">
+    </div>
+    <div data-split-pane-component data-height="30%">
+        <center ng-if="loading">
+            Loading...
+        </center>
+    </div>
+</div>

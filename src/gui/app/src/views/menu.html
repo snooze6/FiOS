@@ -1,0 +1,93 @@
+<div class="toolbar-actions">
+
+    <div class="row" ng-if="main.section=='frida'">
+        <div class="col-xs-10 col-md-10">
+            <!-- Home button -->
+            <a class="btn btn-default" href="#!/frida">
+                <span class="icon icon-home icon-text"></span>
+                Devices
+            </a>
+
+            <!-- Navigation -->
+            <div
+                    ng-show="main.device"
+                    style="display: inline;">
+                &gt
+                <a
+                        class="btn btn-default"
+                        style="height: 24px"
+                        href="#!/frida/{{main.device.id}}/general">
+                    <!--<span class="icon icon-folder icon-mobile"></span>-->
+                        <!--<icon-->
+                                <!--class="media-object pull-left"--
+                                <!--data="device.icon"-->
+                                <!--width="12"-->
+                                <!--height="12">-->
+                        <!--</icon>-->
+                        <img src="img/small-ios.png" style="height: 16px; width: 16px; vertical-align: middle">
+                    {{main.device.id}}
+                </a>
+
+                <div ng-show="main.application" style="display: inline">
+                    &gt
+                    <button class="btn btn-default"
+                            style="height: 24px">
+                        <icon
+                                class="media-object pull-left"
+                                data="main.application.icon"
+                                width="12"
+                                height="12">
+                        </icon>
+                        {{main.application.id}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-md-2">
+            <!-- Add device -->
+            <button
+                    ng-show="!main.device"
+                    ng-click="toggleModal()"
+                    class="btn btn-default pull-right">
+                <span class="icon icon-plus-squared icon-text"></span>
+                Add remote
+            </button>
+
+            <!-- Running -->
+            <button
+                    ng-show="main.application && !main.application.running && main.device && main.device.spawnable"
+                    class="btn btn-default pull-right"
+                    ng-click="run()">
+                <span class="icon icon-play icon-text"></span>
+                Run
+            </button>
+        </div>
+    </div>
+    <div class="row" ng-if="main.section=='editor'">
+        <div class="col-xs-6 col-md-6">
+            <!-- Home button -->
+            <a
+                    ng-click="close_win()"
+                    class="btn btn-default">
+                <span class="icon icon-home icon-text"></span>
+                Back
+            </a>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <button
+                    ng-click="save_file()"
+                    ng-class='{"btn-primary": main.file.changed}'
+                    class="btn btn-default pull-right">
+                <span class="icon icon-plus-squared icon-text"></span>
+                Save
+            </button>
+            <button
+                    ng-click="open_file()"
+                    class="btn btn-default pull-right">
+                <span class="icon icon-plus-squared icon-text"></span>
+                Open
+            </button>
+        </div>
+    </div>
+
+</div>

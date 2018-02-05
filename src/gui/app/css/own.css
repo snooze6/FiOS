@@ -1,0 +1,47 @@
+/* Split */
+html, body { height: 100%; min-height: 100%; margin: 0; padding: 0; }
+/* The styling bolow is very simple. You can style things your own way. */
+body { box-sizing: border-box; background: #aaa; padding: 5px; }
+.split-pane-divider { background: #aaa; }
+.split-pane-component { background: #fff; }
+
+/* Rotate */
+.spin {
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+/* Highlight */
+.highlighted {
+    background: yellow
+}
+#highlight{
+    background-color: yellow;
+}
+
+/* Styles */
+.pointer {
+    cursor: pointer;
+}
+
+.full{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+table{
+    margin: 0 0 45px;
+}
+
+:focus {
+    outline: none;
+}
+
+.focus{
+    background-color: rgba(124,124,124,0.6)
+}

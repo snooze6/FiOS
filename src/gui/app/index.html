@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>FiOS</title>
+        <link rel="shortcut icon" type="image/png" href="img/favicon.ico"/>
+
+        <!-- JQuery -->
+        <script>window.$ = window.jQuery = require('./bower_components/jquery/dist/jquery.min');</script>
+        <!--<script src="bower_components/jquery/dist/jquery.min.js"></script>-->
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="bower_components/photon/dist/css/photon.min.css">
+        <link rel="stylesheet" href="css/own.css">
+
+        <!-- AngularJS -->
+        <!--<script src="bower_components/angular/angular.min.js"></script>-->
+        <script src="bower_components/angular/angular.js"></script>
+            <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+            <script src="bower_components/angular-material/angular-material.min.js"></script>
+            <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+            <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+            <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+            <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+            <script src="bower_components/angular-bootstrap-contextmenu/contextMenu.js"></script>
+            <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+                <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+            <script src="bower_components/angular-split-pane/angular-split-pane.js"></script>
+                <script src="bower_components/split-pane/split-pane.js"></script>
+                <link rel="stylesheet" href="bower_components/split-pane/split-pane.css">
+            <script src="bower_components/json-formatter/dist/json-formatter.min.js"></script>
+                <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.min.css">
+            <script src="bower_components/smalltalk/dist/smalltalk.min.js"></script>
+                <link rel="stylesheet" href="bower_components/smalltalk/dist/smalltalk.min.css">
+            <script src="bower_components/highlightjs/highlight.pack.min.js"></script>
+                <link rel="stylesheet" href="css/github.min.css">
+            <script src="src/directives/angular-highlightjs.js"></script>
+        <!-- Application -->
+        <script src="src/app.js"></script>
+            <script src="src/controllers/controllers.js"></script>
+            <script src="src/directives/directives.js"></script>
+            <script src="src/filters/filters.js"></script>
+    </head>
+    <body ng-app="fios" ng-controller="main">
+        <div class="window">
+            <!-- Toolbar -->
+            <header
+                    class="toolbar toolbar-header"
+                    ng-include="'src/views/menu.html'">
+            </header>
+
+            <!-- Window content -->
+            <ui-view class="window-content"></ui-view>
+            </div>
+        </div>
+    </body>
+</html>

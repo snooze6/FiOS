@@ -1,0 +1,42 @@
+<seldev
+        style="height: 100%; min-width: 100%;"
+        devices="main.devices">
+
+</seldev>
+
+<div class="modal"
+    ng-class="{show: main.modal,
+               focus: main.modal,
+               fade: !main.modal,
+               fadein: main.modal,
+               fadeout: !main.modal}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a ng-click="toggleModal()" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                <h4 class="modal-title">Add remote</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>IP Address</label>
+                        <input
+                                ng-model="data_add.ip"
+                                class="form-control"
+                                placeholder="xxx.xxx.xxx.xxx">
+                    </div>
+                    <div class="form-group">
+                        <label>Port</label>
+                        <input
+                                ng-model="data_add.port"
+                                class="form-control"
+                                placeholder="27042">
+                    </div>
+                    <center>
+                        <a ng-click="add()" class="btn btn-primary">Add</button></a>
+                    </center>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

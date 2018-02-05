@@ -1,0 +1,24 @@
+<div style="
+        height: 100%;
+        min-width: 100%;
+        display: flex;
+        align-items: center;"
+     class='md-padding'
+     layout="row">
+    <div layout="row" flex>
+        <div class="parent" layout="column" ng-repeat="device in devices | reverse" flex>
+            <md-card>
+                <img
+                        ng-src="{{device | getImage}}"
+                        class="md-card-image">
+                <md-card-content>
+                    <h2>{{device.name}}</h2>
+                    <p style="overflow: hidden; text-overflow: ellipsis">{{device.id}}</p>
+                </md-card-content>
+                <div class="md-actions" layout="row" layout-align="end center">
+                    <center><a href="#!/frida/{{device.id}}/general" class="btn btn-primary">Select</a></center>
+                </div>
+            </md-card>
+        </div>
+    </div>
+</div>

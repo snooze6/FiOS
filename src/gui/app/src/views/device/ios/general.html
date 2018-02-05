@@ -1,0 +1,20 @@
+<div class="tab-group">
+    <div
+            class="tab-item"
+            ng-class="{active: section=='general'}"
+            ng-click="switch('general')">
+        <span class="icon icon-tools"></span>
+        General
+    </div>
+    <div
+            ng-show="device.server"
+            class="tab-item"
+            ng-class="{active: section=='files'}"
+            ng-click="switch('files')">
+        <span class="icon icon-folder"></span>
+        Files
+    </div>
+</div>
+
+<ui-view></ui-view>
+

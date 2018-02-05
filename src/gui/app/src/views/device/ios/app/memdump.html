@@ -1,0 +1,93 @@
+<div style="margin: 0; padding-top: 3px; padding-bottom: 3px"
+     class="toolbar toolbar-actions">
+    <div class="row">
+        <div class="col-xs-3 col-md-3" style="padding-right: 4px">
+            <a class="btn btn-default" ng-click="save()">
+                <span class="icon icon-floppy icon-text"></span>
+                Save
+            </a>
+            <a class="btn btn-default" ng-click="save_zip()">
+                <span class="icon icon-archive icon-text"></span>
+                Save as zip
+            </a>
+            <!--<p ng-if="query.found>0" style="display: inline">-->
+                <!--Found: {{query.found}}-->
+            <!--</p>-->
+        </div>
+        <div class="col-xs-6 col-md-6" style="padding: 0">
+            <center>
+                <form ng-submit="search(query.query)">
+                    <input
+                            style="height: 24px;"
+                            class="form-control"
+                            type="text"
+                            ng-model="query.query"
+                            placeholder="Search for...">
+                </form>
+            </center>
+        </div>
+        <div class="col-xs-3 col-md-3" style="padding-left: 4px">
+            <a style="float: right"
+               class="btn btn-default"
+               ng-click="refresh()"
+               ng-disabled="loading">
+                <span class="icon icon-cw icon-text" ng-class="{spin: loading}"></span>
+                {{loading?'Refreshing...':'Refresh'}}
+            </a>
+            <a style="float: right; padding-left: 2px"
+               class="btn btn-default"
+               ng-click="index()"
+               ng-disabled="loading || indexing">
+                <span class="icon icon-network icon-text" ng-class=""></span>
+                {{indexing?'Indexing...':'Index'}}
+            </a>
+        </div>
+    </div>
+
+</div>
+
+
+<div data-split-pane data-split-pane-properties="splitPaneProperties" class="full">
+    <div data-split-pane-component data-height="70%">
+        <div>
+            <table class="table-striped">
+                <thead>
+                    <tr>
+                        <th>Base dir</th>
+                        <th>Size</th>
+                        <th>Permissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                            ng-repeat="range in ranges"
+                            ng-attr-id="{{range.active ? 'highlight' : ''}}"
+                            context-menu="menuOptions">
+                        <td>{{range.baseAddress | hex}}</td>
+                        <td>{{range.size}}</td>
+                        <td>{{range.protection}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <style>.split-pane-divider-inner{cursor: ns-resize;}</style>
+    <div data-split-pane-divider
+         data-height="5">
+    </div>
+    <div data-split-pane-component data-height="30%">
+        <center ng-if="loading || indexing">
+            <img src="img/loading.gif">
+            <p>Dumping...</p>
+        </center>
+        <center ng-if="!mem">
+            <p>{{query | json}}</p>
+            <div ng-repeat="range in ranges">
+                <p ng-if="range.active">{{range.baseAddress | hex}}</p>
+            </div>
+        </center>
+        <center ng-if="!!mem">
+            <hexview ng-model="mem"></hexview>
+        </center>
+    </div>
+</div>
