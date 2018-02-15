@@ -9,10 +9,10 @@ async function test_app(app) {
     if (app){
         await app.setup();
 
-        if (!app.running) {
+        if (!app.running && app.dev.spawnable) {
             console.log('[+] |--- Launching ' + app.name);
             // app.operations.disable();
-            // await app.run();
+            await app.run();
         }
 
         {
@@ -22,17 +22,19 @@ async function test_app(app) {
             // Testing misc
             {
                 // console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Env:');
-                // console.log(await app.operations.env());
+                // console.log(await app.operations.misc.env());
                 // console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Info:');
-                // console.log(await app.operations.info());
+                // console.log(await app.operations.misc.info());
                 // console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Frida:');
-                // console.log(await app.operations.frida());
+                // console.log(await app.operations.misc.frida());
                 // console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Flags:');
-                // console.log(await app.bin_info());
-                // console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Pinning:');
-                // console.log(app.operations.misc.pinning(true, false));
-                // await timeout(30000);
-                // console.log('<End>')
+                // console.log(await app.operations.misc.flags());
+                console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Pinning:');
+                app.operations.misc.pinning(false);
+                console.log('[+] - <'+app.dev.name+'> - <' + app.name + '> - Root:');
+                app.operations.root.disable();
+                await timeout(120 * 1000);
+                console.log('<End>')
             }
 
             // Testing filesystem
@@ -154,20 +156,20 @@ async function test_app(app) {
                 // console.log('[+] |-----  List methods of class [Own]: ');
                 // console.log(await app.operations.hooking.list_methods(cl));
 
-                console.log('Adding agent');
-                await app.operations.agents.add_src('/Users/snooze/workspace/tfg/udb/files/test_infinite.js');
-                console.log(await app.operations.agents.get_agents());
-                app.operations.agents.run_agent(
-                    '/Users/snooze/workspace/tfg/udb/files/test_infinite.js',
-                    (s)=>{
-                        console.log(s);
-                    }
-                );
-                await timeout(4000);
-                console.log('Stopping script');
-                await app.operations.agents.stop_agent('/Users/snooze/workspace/tfg/udb/files/test_infinite.js');
-
-                await timeout(10000)
+                // console.log('Adding agent');
+                // await app.operations.agents.add_src('/Users/snooze/workspace/tfg/udb/files/test_infinite.js');
+                // console.log(await app.operations.agents.get_agents());
+                // app.operations.agents.run_agent(
+                //     '/Users/snooze/workspace/tfg/udb/files/test_infinite.js',
+                //     (s)=>{
+                //         console.log(s);
+                //     }
+                // );
+                // await timeout(4000);
+                // console.log('Stopping script');
+                // await app.operations.agents.stop_agent('/Users/snooze/workspace/tfg/udb/files/test_infinite.js');
+                //
+                // await timeout(10000)
             }
 
             // Test Memory
@@ -195,10 +197,10 @@ async function test_device(dev){
 
         console.log('[+] ----- Show frida information');
         console.log(await dev.frida.operations.misc.frida());
-        console.log('[+] ----- Show type information');
-        console.log(await dev.frida.operations.misc.type());
-        console.log('[+] ----- Show info information');
-        console.log(await dev.frida.operations.misc.info());
+        // console.log('[+] ----- Show type information');
+        // console.log(await dev.frida.operations.misc.type());
+        // console.log('[+] ----- Show info information');
+        // console.log(await dev.frida.operations.misc.info());
 
         // console.log('[+] ----- Listing arbitrary path');
         // console.log(await dev.frida.operations.filesystem.ls('/var/root'))
@@ -245,8 +247,8 @@ async function main () {
     let android = null, iOS=null;
 
     android =
-        await man.get('0486a2e843886fba') ||
-        await man.get('ZY2239XLVG');
+        await man.get('0486a2e843886fba') || // Moto G4 plus
+        await man.get('0271de74185714b9'); // Nexus 5X
     iOS =
         await man.get('6835ce9eb6496206ac817055ce212a99cbbb2d2e') || // iPhone 4S
         await man.get('8e38e87af4d142cc0ebb5787b7acdf20962a7d4d') || // iPhone 6S plus
@@ -264,8 +266,7 @@ async function main () {
             // await test_device(iOS);
 
             // await test_app(await iOS.attach('sg.vp.UnCrackable1'));
-            await test_app(await iOS.attach('com.rootcheck'));
-            // await test_app(await iOS.attach('com.gestmusic.ot2017'));
+            // await test_app(await iOS.attach('com.rootcheck'));
         }
         if (android){
             await android.setup();
@@ -275,12 +276,18 @@ async function main () {
             console.log('      Spawnable: '+await android.spawnable);
             console.log('      Server:    '+await android.server);
             console.log('      Attached:  '+await android.attached);
+            console.log('      ---  ---  -  ---  ---');
 
-            await test_device(android)
+            // await test_device(android);
 
             // await test_app(await android.attach('com.amphoras.hidemyroot'));
             // await test_app(await android.attach('sg.vantagepoint.uncrackable1'));
             // await test_app(await android.attach('com.joeykrim.rootcheck'));
+            let app = await android.attach('com.bankinter.empresas');
+            if (app)
+                await test_app(app);
+            else
+                console.log('[!] - ERROR: App not attached')
         }
     }
 }

@@ -470,7 +470,8 @@ class device{
     async setup(){
         if (!this.frida) {
             let ps = await this.dev.enumerateProcesses();
-            let p = await ps.find(o => o.name === 'frida-server');
+            // Frida server can be renamed
+            let p = await ps.find(o => o.name === 'frida-server' || o.name === 'frida');
 
             if (p) {
                 let pid = await this.dev.attach(p.pid);
@@ -486,10 +487,9 @@ class device{
         return this
     }
     async get_apps(){
-        return this.dev.enumerateApplications();
+        return await this.dev.enumerateApplications();
     }
     async attach(apid){
-        // console.log('[+] - Attach called');
         let apps = await this.get_apps();
 
         for (let i in apps){

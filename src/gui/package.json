@@ -22,6 +22,6 @@
     "plist": "^2.1.0"
   },
   "devDependencies": {
-    "electron-packager": "^10.1.1"
+    "electron-packager": "^10.1.2"
   }
 }

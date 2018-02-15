@@ -1,8 +1,9 @@
-module.exports = function(tls_helper, quiet){
+module.exports = function(quiet){
     return new Promise(function (resolve, reject) {
-        resolve = send;
+        var send = console.log;
 
         if (ObjC.available) {
+            resolve = send;
 
             /* SSLContextRef SSLCreateContext ( CFAllocatorRef alloc, SSLProtocolSide protocolSide, SSLConnectionType connectionType );*/
             var SSLCreateContext = new NativeFunction(
@@ -588,7 +589,7 @@ module.exports = function(tls_helper, quiet){
 
                 // Helper method to honor the quiet flag.
                 function quiet_send(data) {
-                    if (quiet) {
+                    if (quiet === true) {
                         return;
                     }
                     send(data)
@@ -613,27 +614,18 @@ module.exports = function(tls_helper, quiet){
                 // Prepare the TrustManagers array to pass to SSLContext.init()
                 var TrustManagers = [TrustManager.$new()];
 
-                send({
-                    status: 'success',
-                    error_reason: NaN,
-                    type: 'android-ssl-pinning-bypass',
-                    data: 'Custom, Empty TrustManager ready'
-                });
+                quiet_send('Create empty TrustManager');
 
                 // Get a handle on the init() on the SSLContext class
                 var SSLContext_init = SSLContext.init.overload(
-                    '[Ljavax.net.ssl.KeyManager;', '[Ljavax.net.ssl.TrustManager;', 'java.security.SecureRandom');
+                    '[Ljavax.net.ssl.KeyManager;',
+                    '[Ljavax.net.ssl.TrustManager;',
+                    'java.security.SecureRandom'
+                );
 
                 // Override the init method, specifying our new TrustManager
                 SSLContext_init.implementation = function (keyManager, trustManager, secureRandom) {
-
-                    quiet_send({
-                        status: 'success',
-                        error_reason: NaN,
-                        type: 'android-ssl-pinning-bypass',
-                        data: 'Overriding SSLContext.init() with the custom TrustManager'
-                    });
-
+                    quiet_send('Overriding SSLContext.init() with the custom TrustManager');
                     SSLContext_init.call(this, keyManager, TrustManagers, secureRandom);
                 };
 
@@ -645,21 +637,12 @@ module.exports = function(tls_helper, quiet){
 
                     var CertificatePinner = Java.use('okhttp3.CertificatePinner');
 
-                    send({
-                        status: 'success',
-                        error_reason: NaN,
-                        type: 'android-ssl-pinning-bypass',
-                        data: 'OkHTTP 3.x Found'
-                    });
+                    quiet_send('OkHTTP 3.x Found');
 
-                    CertificatePinner.check.overload('java.lang.String', 'java.util.List').implementation = function () {
-
-                        quiet_send({
-                            status: 'success',
-                            error_reason: NaN,
-                            type: 'android-ssl-pinning-bypass',
-                            data: 'OkHTTP 3.x check() called. Not throwing an exception.'
-                        });
+                    CertificatePinner.check
+                        .overload('java.lang.String', 'java.util.List')
+                        .implementation = function () {
+                        quiet_send('OkHTTP 3.x check() called. Not throwing an exception.');
                     }
 
                 } catch (err) {
@@ -677,24 +660,14 @@ module.exports = function(tls_helper, quiet){
                 // Wrap the logic in a try/catch as not all applications will have
                 // appcelerator as part of the app.
                 try {
-
                     var PinningTrustManager = Java.use('appcelerator.https.PinningTrustManager');
 
-                    send({
-                        status: 'success',
-                        error_reason: NaN,
-                        type: 'android-ssl-pinning-bypass',
-                        data: 'Appcelerator Titanium Found'
-                    });
+                    quiet_send('Appcelerator Titanium Found');
 
                     PinningTrustManager.checkServerTrusted.implementation = function () {
-
-                        quiet_send({
-                            status: 'success',
-                            error_reason: NaN,
-                            type: 'android-ssl-pinning-bypass',
-                            data: 'Appcelerator checkServerTrusted() called. Not throwing an exception.'
-                        });
+                        quiet_send(
+                            'Appcelerator checkServerTrusted() called. Not throwing an exception.'
+                        );
                     }
 
                 } catch (err) {
