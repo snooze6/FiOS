@@ -6,16 +6,22 @@
 
 This manual will show how to execute the application, the usage of its main features and how to setup a development environment in order to expand its features. It will be divided in the following sections:
 
-1. [Requirements](#Requirements)
-2. [Usage](#Usage)
-3. [Development](#Development)
-4. [Troubleshooting and feature request](#Troubleshooting)
-5. [License](#License)
-6. [Acknowledgements](#Aknowledgements)
+1. [Acknowledgements](#Aknowledgements)
+2. [Requirements](#Requirements)
+3. [Usage](#Usage)
+4. [Development](#Development)
+5. [Troubleshooting and feature request](#Troubleshooting)
+6. [License](#License)
 
 <div class="page-break"></div>
 
-### 1 - Requirements
+### 1 - Acknowledgements
+
+1. [Objection](https://github.com/sensepost/objection) - Most of the hooks are adapted from here
+2. [Frida](https://github.com/frida/frida)
+3. [frida-scripts](https://github.com/as0ler/frida-scripts)
+
+### 2 - Requirements
 
 In order to execute this tool, the only requirement is to have a computer running either linux, osx or windows, although in order to use its features it is required to have an iOS device running Frida.
 
@@ -44,7 +50,7 @@ More information about the process of installing Frida on iOS is available in th
 
 <div class="page-break"></div>
 
-### 2 - Usage
+### 3 - Usage
 
 Simply double-click on the application executable and it should start the GUI. Local devices are shown as they are planned to be supported on the future.
 
@@ -188,7 +194,7 @@ This view shows the contents of the ui including hidden elements which can hide 
 
 <div class="page-break"></div>
 
-### 3 - Development
+### 4 - Development
 
 The project uses npm to manage its dependencies so it is mandatory to install NodeJS and npm in order to improve the tool, any version is supported as the ".npmrc" specifies the correct electron version to use.
 
@@ -249,7 +255,7 @@ In accordance with the usual rules of procedure on other open-source projects, f
 
 <div class="page-break"></div>
 
-### 4 - Troubleshooting and feature request
+### 5 - Troubleshooting and feature request
 
 If a bug is found in the tool, a issue can be filled in GitHub so it can be fixed.
 
@@ -264,14 +270,8 @@ New ideas or features are also welcomed.
 
 <div class="page-break"></div>
 
-## 5 - License
+### 6 - License
 
 See license.txt
-
-## 6 - Acknowledgements
-
-1. [Objection](https://github.com/sensepost/objection) - Most of the hooks are adapted from here
-2. [Frida](https://github.com/frida/frida)
-3. [frida-scripts](https://github.com/as0ler/frida-scripts)
 
 </div>
