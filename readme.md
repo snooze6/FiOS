@@ -6,16 +6,16 @@
 
 This manual will show how to execute the application, the usage of its main features and how to setup a development environment in order to expand its features. It will be divided in the following sections:
 
-1. Requirements
-2. Usage
-3. Development
-4. Troubleshooting and feature request
-5. License
-6. Acknowledgements
+1. [Requirements](#Requirements)
+2. [Usage](#Usage)
+3. [Development](#Development)
+4. [Troubleshooting and feature request](#Troubleshooting)
+5. [License](#License)
+6. [Acknowledgements](#Aknowledgements)
 
 <div class="page-break"></div>
 
-### 9.1.1 - Requirements
+### 1 - Requirements
 
 In order to execute this tool, the only requirement is to have a computer running either linux, osx or windows, although in order to use its features it is required to have an iOS device running Frida.
 
@@ -44,7 +44,7 @@ More information about the process of installing Frida on iOS is available in th
 
 <div class="page-break"></div>
 
-### 9.1.2 - Usage
+### 2 - Usage
 
 Simply double-click on the application executable and it should start the GUI. Local devices are shown as they are planned to be supported on the future.
 
@@ -188,7 +188,7 @@ This view shows the contents of the ui including hidden elements which can hide 
 
 <div class="page-break"></div>
 
-### 9.1.3 - Development
+### 3 - Development
 
 The project uses npm to manage its dependencies so it is mandatory to install NodeJS and npm in order to improve the tool, any version is supported as the ".npmrc" specifies the correct electron version to use.
 
@@ -249,7 +249,7 @@ In accordance with the usual rules of procedure on other open-source projects, f
 
 <div class="page-break"></div>
 
-### 9.1.4 - Troubleshooting and feature request
+### 4 - Troubleshooting and feature request
 
 If a bug is found in the tool, a issue can be filled in GitHub so it can be fixed.
 
@@ -264,23 +264,13 @@ New ideas or features are also welcomed.
 
 <div class="page-break"></div>
 
-## 9.1.5 - License
+## 5 - License
 
-Copyright 2018 Armando Nogueira Rio (@snooze6)
+See license.txt
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+## 6 - Acknowledgements
 
-1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-## 9.1.6 - Acknowledgements
-
-1. [Objection](https://github.com/sensepost/objection)
+1. [Objection](https://github.com/sensepost/objection) - Most of the hooks are adapted from here
 2. [Frida](https://github.com/frida/frida)
 3. [frida-scripts](https://github.com/as0ler/frida-scripts)
 
